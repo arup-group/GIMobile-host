@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+    <title>ARUP Geological Inspection Mobile Application</title>
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Material Design -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" />
+	
+	<style>
+		html {
+			width: 100%;
+			height: 100%;
+			background-color: #15224f;
+		}		
+		.arup-logo {
+		    display: inline-block;
+		}		
+		.arup-logo > img {
+			width: 70px;
+			margin-top: -12px;
+			margin-right: 10px;
+			-webkit-filter: opacity(90%); filter: opacity(90%);
+		}		
+		span.mdl-layout-title {
+			display: inline-block;
+			position: relative;
+			font-family: "Roboto","Helvetica","Arial",sans-serif;
+			font-size: 26px;
+			font-weight: 400;
+			letter-spacing: -1px;
+			text-transform: uppercase;
+			box-sizing: border-box;
+			top: -1px;
+		}		
+		span.mdl-layout-title-subtitle {
+			display: inline-block;
+			position: relative;
+			font-family: "Roboto","Helvetica","Arial",sans-serif;
+			font-size: 10px;
+			line-height: 10px;
+			letter-spacing: 0.5px;
+			font-weight: 400;
+			box-sizing: border-box;
+			padding-left: 3px;
+			top: 1px;
+		}
+		.footer-bottom {
+			background-color: #15224f;
+			min-height: 30px;
+			width: 100%;
+		}
+		.copyright {
+			color: #fff;
+			line-height: 30px;
+			min-height: 30px;
+			padding: 7px 0;
+			text-align: center;
+			font-size: 12px;
+		}
+		.navbar.navbar-navy {
+			background-color: #15224f;
+			margin-bottom: 10px;
+		}
+		.parent-container {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		.model-container {
+			width: 100%;
+			height: 79vh;
+		}
+		.nav-tabs {
+			background: none;
+		}		
+		li.active {
+			border-bottom: 2.5px solid navy;
+		}		
+	</style>
+
+</head>
+<body>
+    <div id="pageContent" ng-app="myApp">
+		<!-- Page nav bar -->
+		<div class="navbar navbar-navy">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="javascript:void(0)">
+				<span class="arup-logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAAAaCAYAAADG+xDjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjVJivzgAAADsUlEQVRoQ+2ZjVHjQAyFUwIlUAIlUAIlUAIlUAIlUAIlUAIlUAId5L5na32yvD9yJpfkZngzO7Glt/busyTvOoc9OB6Pj3b4i3MAQe9p33b6i3MAQV9pwrOZUoD/QPsctA+arv9g3bpw/Wqteg3sz4Hn2zInjt+Cr9Y01ifanXU7DVzgmybsilb4dzRN6EedE9B9umUGvyZUxuPxQqtOFLsyrQSGh2z3RhNPQfAlRwKak/rvF5dOj7qCw+7aSh8J6yFR3mmK0ppA3YyQf6YteDdXF/C8YJ9mXgG7HkCEIrREcYSuuU9YOmjyHtXB9ECf+GBezTWBc0VfjObmw5NvpixYXa8FeF6U5jzMv8DMEziV6DGaP8ydAx1qqbukTAbwhyJgU+p59CZ9NVEFTCprUdicJhBjmhWk0q0AfkoE2Wf3glaNvKqoAuZYJl7M1QdE1bwW0nUEblbUGK3VEiD77F5wcVEFXD5a38zcBiT/JPQyiVGUmogANy2C+QtuXVR/vXH2QtISpUBvPtURD9XaVLTCy0bqKqXMvAGuWxR1PAZIPrSnRTW/cSWQ2gzAy4rqs6H5RsV3dVExx5ra37yIMPMmLAt+jmPNS20G4A1FwKZr+5VGc5D4bkFU/74ZL6kgKd0LVgWYcz8w4clcTcBpisCxfIrQIqh+R4v/i4vKj8phGavfsOQW/5CaEcN5XGY1B1cAZyMCzdfsglSdhnNRUYHeJ7H0CdO7xrq1AUm7Gw8NJLaIbj3BXxWBX6V8XEQP36JwLh6pAocSV/dWSy8p1bH2REboCoG/KQLHtd1JdyGN/yqingT6x2WT0rTVIprbNHxdETiPLynhX7+oequLFcx8Gujv6+WXmavAHyO6uaPANxQBW6yxzfqKPa5Csl+pvKjNB2H+BWY+DfT3abg3BXsipCILe6zXvRT1kT1c2sGJWdhctZh/gZn3g75xMZt5C6dqIfasqJp4LAPVDMC+ayOC35esZgAIM+UvzLwf9PU3TX0fhLf5+GyuFbCnayC+yBU2gmGLQSChqnUYexxn8/6CcRaYeT/o6xe0qe2nADdGVk2AuEwbrRZqnxw3gmGr8RTBejBqum+M6O67QjDeAjPvA/3ijVPfBuHV0nUVMRyLE2ulOKP/omqCKZtWaWu2LDSOblnDX9uUdCN7AzrECRd0d0r4a2nqMYlmxy2M0rD2N4uwGhvnGkvtv64CXWMojDgTu46uHv8VmIwiXVGrCavpuLXK0FKr8Eobfps4Hw6HP84hQnmcJEUZAAAAAElFTkSuQmCC" /></span>			
+				<span class="mdl-layout-title">GI Mobile</span>
+			    <span class="mdl-layout-title-subtitle">Geological Inspection Mobile Application</span>
+			  </a>			  
+			</div>
+		  </div>
+		</div>
+		<!-- Page content -->
+		<div class="parent-container">
+			<div style="text-align: center;">
+				<img style="width: 100%; max-width: 500px;" src="arupreal.gif" />				
+			</div>
+			<div class="bs-component">
+			  <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+				<li class="nav-link active"><a style="color: rgba(0,0,0,.9) !important;" href="#ios" data-toggle="tab">iOS</a></li>
+				<li class="nav-link"><a style="color: rgba(0,0,0,.9) !important;" href="#android" data-toggle="tab">Android</a></li>
+				</li>
+			  </ul>
+			  <div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade active in" id="ios">				  
+				  <ol>
+					<li>Please open this webpage in Safari on your iPhone or iPad.</li>					
+					<li><a href="#" onclick="showDisclaimer(0)">Download</a> and install the Geological Inspection Mobile Application. The file size of the app is around 13 MB.</li>
+					<img style="width: 40px;" src="icon.png" />					
+					<li><a href="https://raw.githubusercontent.com/arup-group/GIMobile-host/master/GIMobile.mobileprovision" target="_blank">Download</a> the certificate and trust <strong>Arup</strong> (<a href="trust.gif" target="_blank">click me to see how</a>). Your operating system must be iOS 12 or above.</li>
+					<!-- <li>Scan the entire page to see 3D models in Augmented Reality.</li>
+					<li>Recommeded devices: iPhone 6, iPad Pro 1, or higher.</li> -->
+				  </ol>
+				</div>
+				<div class="tab-pane fade" id="android">
+				  <ol>
+					<li>Please open this webpage in browser on your Android phone or tablet.</li>
+					<li><a href="#" onclick="showDisclaimer(1)">Download</a> and install the Geological Inspection Mobile Application. The file size of the app is around 36 MB.</li>
+					<img style="width: 40px;" src="icon.png" />
+					<li>Please allow installation from unknown source.</li>
+					<!-- <li>Scan the entire page to see 3D models in Augmented Reality.</li>
+					<li>Recommeded devices: Samsung Galaxy S6, Samsung Galaxy Tab S2, or higher.</li> -->
+				  </ol>
+				</div>
+			  </div>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<div class="container">
+				<div id="excelapi" class="row"></div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="copyright">
+							Arup Hong Kong © 2023 All rights reserved
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+    <script>		
+		
+        $(function () {
+			$.material.init();
+		});
+		
+		function showDisclaimer(platform) {
+			var disclaimer = "====Disclaimer====\n\nThe application is still in early development stage. Please only share the app within people in this project.";
+			if (confirm(disclaimer) == true) {
+				if(platform == 0){
+					window.open("itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/arup-group/GIMobile-host/master/ios build/DistributionSummary.plist");
+				}else{
+					window.open("https://github.com/ArupAus/KVMRT3AR/releases/download/2017.11.02.01/KVMRT3_7_2017110201.apk");
+				}				
+			}
+		}
+		
+    </script>
+</body>
+</html>
